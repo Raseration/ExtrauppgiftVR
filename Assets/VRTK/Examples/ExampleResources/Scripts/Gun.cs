@@ -7,6 +7,7 @@
         private GameObject bullet;
         private float bulletSpeed = 1000f;
         private float bulletLife = 5f;
+        public GameObject snap;
 
         public override void StartUsing(VRTK_InteractUse usingObject)
         {
@@ -28,5 +29,12 @@
             rb.AddForce(-bullet.transform.forward * bulletSpeed);
             Destroy(bulletClone, bulletLife);
         }
+
+        public override void Ungrabbed(VRTK_InteractGrab previousGrabbingObject = null)
+        {
+            transform.position = snap.transform.position;
+        }
+
+
     }
 }
